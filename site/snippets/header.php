@@ -17,3 +17,6 @@
 		document.getElementsByTagName('html')[0].className += ' cssmasks ';
 	}
 </script>
+<header role="banner">
+	<a href="<?php echo url() ?>"><?php echo $site->title() ?></a>
+</header>
