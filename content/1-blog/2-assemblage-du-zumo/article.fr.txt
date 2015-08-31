@@ -1,0 +1,21 @@
+Title: Assemblage du ZUMO
+
+----
+
+Date: 2015-08-27
+
+----
+
+Tags: zumo,arduino
+
+----
+
+Text: 
+
+Suite (et fin) de l'assemblage du ZUMO.
+
+Peu de commentaires sur l'installation, si ce n'est que (link: https://www.pololu.com/docs/pdf/0J57/zumo_shield_for_arduino.pdf text: le guide d'assemblage de Pololu) est extrêmement bien fait, et permet à un novice en soudure de s'en sortir en quelques heures.
+
+----
+
+Attachments: _1030152-2.jpg,_1030153-1.jpg,_1030157-3.jpg,_1030158-4.jpg,_1030162-5.jpg,_1030165-6.jpg,_1030166-7.jpg,_1030168-8.jpg

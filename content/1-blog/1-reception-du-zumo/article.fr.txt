@@ -1,0 +1,25 @@
+Title: Réception du ZUMO
+
+----
+
+Date: 2015-08-26
+
+----
+
+Tags: zumo,arduino
+
+----
+
+Text: 
+
+Réception de la commande du (link: https://www.pololu.com/category/129/zumo-robots-and-accessories text:Zumo de Pololu ), un petit (10cm²) robot destiné à la compétition de Mini Sumo.
+
+Premiers points de soudures, mais l'oubli d'un Arduino Uno empêche l'ajout des headers sur le pcb (le Zumo se comporte comme un shield).
+
+(image: _1030139-1.jpg)
+
+En parallèle, assemblage du (link: https://www.pololu.com/product/1419 text: capteur de réflectence), qui permet la détection du contraste au sol, et donc des algorithmes de suivi de lignes, de résolution de labyrinthe, etc...
+
+----
+
+Attachments: _1030139-1.jpg,_1030140-2.jpg,_1030141-3.jpg,_1030143-4.jpg,_1030145-5.jpg
