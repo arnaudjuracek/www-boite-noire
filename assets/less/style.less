@@ -1,4 +1,4 @@
-@import "kirby.less";
+// @import "kirby.less";
 //@import (inline) "normalize.min.css";
 @import "bootstrap/bootstrap.less";
 @import "photoswipe.less";
@@ -10,7 +10,102 @@
 @desktop:    ~"only screen and (min-width: 1025px)";
 @ldesktop:    ~"only screen and (min-width: 1250px)";
 
-@cbgColor: #fff;
-@ctextColor: #000;
-@clight_grey: #f9f9f9;
-@cgrey: #777;
+@COLOR: #F8E3EA;
+@COLOR_HOVER: rgb(247, 126, 148, .9);
+
+
+a{
+	color: inherit;
+	cursor: pointer;
+
+	color: @COLOR_HOVER;
+	transition:	color .25s ease-in-out;
+
+	&:hover, &:focus{
+		color: #000;
+    	text-decoration: none;
+	}
+}
+
+header.main{
+	position: fixed;
+	z-index: 999;
+
+	margin-bottom: 100px;
+	text-transform: lowercase;
+
+	a.title{
+		position: fixed;
+		right: 50%;
+		font-size: 5em;
+		text-align: right;
+		background: none;
+
+		&:hover{
+			text-decoration: underline;
+		}
+	}
+
+	.button{
+		font-size: 20px;
+		position: fixed;
+		top: 10px;
+		right: 10px;
+		background: none;
+	}
+
+}
+
+main{
+	.container;
+
+	.articles-container{
+		padding-top: 100px;
+		article{
+			.make-row;
+			.clearfix;
+
+			margin-bottom: 50px;
+
+			.gallery{
+				width: 100%;
+				img{
+					width: 100%;
+					height: auto;
+				}
+			}
+
+			header{
+				text-align: right;
+				.make-md-column(6);
+				h1{
+					margin-top: 0;
+					font-size: 30px;
+					margin-bottom: 20px;
+					font-weight: normal;
+					text-transform: lowercase;
+					background-color: transparent;
+				}
+
+				.meta{
+					// border-right: 3px solid @COLOR_HOVER;
+					// padding-right: 16px;
+					ul.tags{
+						list-style: none;
+					}
+				}
+
+
+			}
+
+			.content{
+				.make-md-column(6);
+				padding-top: 53px;
+
+				p{
+					margin: 0 0 10px 0;
+				}
+			}
+		}
+	}
+}

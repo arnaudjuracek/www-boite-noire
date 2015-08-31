@@ -360,7 +360,7 @@ kirbytext::$tags['image'] = array(
 			$placeholderSRC = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==';
 			if( $lowResPreview == true ) {
 				$placeholderSRC = thumb( $image, array(
-					'width'   => 5,
+					'width'   => 20,
 				))->dataUri();
 			}
 

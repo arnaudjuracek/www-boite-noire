@@ -55,8 +55,8 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
 			linkEl = figureEl.children[0]; // <a> element
 
 			size = linkEl.getAttribute('data-size').split('x');
-			console.log( "size " + size);
-			console.log("size : " + size);
+			// console.log( "size " + size);
+			// console.log("size : " + size);
 
 			// create slide object
 			item = {
@@ -77,7 +77,7 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
 				//item.msrc = linkEl.children[0].getAttribute('src');
 				item.msrc = $(linkEl).find("img").attr('src');
 
-				console.log( "source : " + item.msrc);
+				// console.log( "source : " + item.msrc);
 				// si source == data:gif, prendre la plus petite image de srcset
 				if( item.msrc.indexOf("data") > -1) {
 					item.msrc = $(linkEl).find("img")[0].currentSrc;

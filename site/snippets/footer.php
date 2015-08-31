@@ -74,6 +74,7 @@
 </div>
 
 <?php echo js("assets/js/vendor/jquery-1.11.0.min.js") ?>
+<?php echo js("assets/js/vendor/jquery.fittext.js") ?>
 <?php echo js('assets/js/_plugins.js') ?>
 <?php echo js('assets/js/_photoswipe.js') ?>
 <?php echo js('assets/js/main.js') ?>
