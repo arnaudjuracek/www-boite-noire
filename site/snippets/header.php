@@ -7,17 +7,13 @@
   <title><?php echo $site->title()->html() ?> | <?php echo $page->title()->html() ?></title>
   <meta name="description" content="<?php echo $site->description()->html() ?>">
   <meta name="keywords" content="<?php echo $site->keywords()->html() ?>">
-
 	<?php snippet('less') ?>
 	<?php add_to_visited_links(kirby()->request()->url());?>
-
 	<?php snippet('modernizr_touch'); ?>
-
-
 </head>
-<body data-template="<?php echo $page->template(); ?>" data-menu-state="is-closed" data-navbar="anime">
+<body data-template="<?php echo $page->template(); ?>">
 <script>
-if ( document.body.style[ '-webkit-mask-repeat' ] !== undefined ) {
-	document.getElementsByTagName('html')[0].className += ' cssmasks ';
-}
+	if(document.body.style[ '-webkit-mask-repeat' ] !== undefined){
+		document.getElementsByTagName('html')[0].className += ' cssmasks ';
+	}
 </script>
