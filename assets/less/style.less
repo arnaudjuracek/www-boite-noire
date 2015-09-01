@@ -5,7 +5,7 @@
 @import "imagetag.less";
 
 @phone-only:    ~"only screen and (max-width: @{screen-xs-max})"; // @screen-xs-max
-@tablet:    ~"only screen and (min-width: @screen-sm-min)"; // @screen-sm-min
+@tablet:    ~"only screen and (min-width: @{screen-md-min})"; // @screen-sm-min
 @tablet-phone-only:    ~"only screen and (max-width: @{screen-sm-max})";
 @desktop:    ~"only screen and (min-width: 1025px)";
 @ldesktop:    ~"only screen and (min-width: 1250px)";
@@ -28,21 +28,21 @@ a{
 }
 
 header.main{
-	position: fixed;
-	z-index: 999;
+	.container;
+	@media @tablet{
+		position: fixed;
+		z-index: 999;
+		margin-bottom: 100px;
+	}
 
-	margin-bottom: 100px;
 	text-transform: lowercase;
 
 	a.title{
-		position: fixed;
-		right: 50%;
 		font-size: 5em;
-		text-align: right;
-		background: none;
-
-		&:hover{
-			text-decoration: underline;
+		@media @tablet{
+			position: fixed;
+			right: 50%;
+			text-align: right;
 		}
 	}
 
@@ -51,7 +51,6 @@ header.main{
 		position: fixed;
 		top: 10px;
 		right: 10px;
-		background: none;
 	}
 
 }
@@ -60,12 +59,13 @@ main{
 	.container;
 
 	.articles-container{
-		padding-top: 100px;
+		@media @tablet{ padding-top: 100px; }
 		article{
 			.make-row;
 			.clearfix;
 
 			margin-bottom: 50px;
+			position: relative;
 
 			.gallery{
 				width: 100%;
@@ -76,8 +76,10 @@ main{
 			}
 
 			header{
-				text-align: right;
 				.make-md-column(6);
+				@media @tablet{
+					text-align: right;
+				}
 				h1{
 					margin-top: 0;
 					font-size: 30px;
@@ -86,16 +88,16 @@ main{
 					text-transform: lowercase;
 					background-color: transparent;
 				}
-
 				.meta{
-					// border-right: 3px solid @COLOR_HOVER;
-					// padding-right: 16px;
+					*{
+						display: inline;
+						@media @tablet{ display: block; }
+					}
 					ul.tags{
 						list-style: none;
+						padding: 0;
 					}
 				}
-
-
 			}
 
 			.content{
@@ -104,6 +106,31 @@ main{
 
 				p{
 					margin: 0 0 10px 0;
+				}
+			}
+
+
+			@media @tablet{
+				&.affix-top{
+						header{
+							position: fixed;
+							top: 100px;
+							right: 50%;
+						}
+						.content{
+							.make-md-column-offset(6);
+						}
+				}
+
+				&.affix-bottom{
+					header{
+						position: absolute;
+						bottom: 0px;
+						right: 50%;
+					}
+					.content{
+						.make-md-column-offset(6);
+					}
 				}
 			}
 		}
