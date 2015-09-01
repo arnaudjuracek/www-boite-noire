@@ -3,8 +3,18 @@
 	<?php snippet('menu') ?>
 	<main role="main">
 
-
-		<?php $articles = $pages->find('blog')->children()->visible()->flip() ?>
+		<?php
+			if(param('tag')){
+				$tag = urldecode(param('tag'));
+				$articles = $pages->find('blog')
+								->children()
+								->visible()
+								->filterBy('tags', $tag, ',')
+								->flip();
+			}else{
+				$articles = $pages->find('blog')->children()->visible()->flip();
+			}
+		?>
 
 		<div class="articles-container">
 			<?php foreach($articles as $article):?>
@@ -22,11 +32,15 @@
 							</time>
 
 							<?php if($article->tags() != ''): ?>
-								<ul class="tags">
-									<?php foreach(str::split($article->tags()) as $tag): ?>
+								<ol class="tags">
+									<?php
+										$tags = str::split($article->tags());
+										sort($tags);
+									?>
+									<?php foreach($tags as $tag): ?>
 										<li><a href="<?php echo url('tag:' . urlencode($tag)) ?>">#<?php echo $tag; ?></a></li>
 									<?php endforeach ?>
-								</ul>
+								</ol>
 							<?php endif ?>
 						</div>
 					</header>
@@ -39,13 +53,13 @@
 								if(count($filenames)<2) $filenames = array_pad($filenames, 2, '');
 								$files = call_user_func_array(array($article->files(), 'find'), $filenames);
 
-								// Use the file collection
 								foreach($files as $image){
 									echo kirbytag(array(
 										'image'  		=> $image->filename(),
 										'taille'		=> 'image grid',
 										'thumbwidth'  	=> 1200,
-										'originalPage'	=> $article
+										'originalPage'	=> $article,
+										'alt'			=> $image->caption(),
 									));
 								}
 							?>

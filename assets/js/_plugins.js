@@ -67,15 +67,16 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
 
 
 
-			if(figureEl.children.length > 1) {
+			// if(figureEl.children.length > 1) {
 				// <figcaption> content
-				item.title = figureEl.children[1].innerHTML;
-			}
+				// item.title = figureEl.children[1].innerHTML;
+			// }
 
 			if(linkEl.children.length > 0) {
 				// <img> thumbnail element, retrieving thumbnail url
 				//item.msrc = linkEl.children[0].getAttribute('src');
 				item.msrc = $(linkEl).find("img").attr('src');
+				item.title = $(linkEl).find("img").attr('alt');
 
 				// console.log( "source : " + item.msrc);
 				// si source == data:gif, prendre la plus petite image de srcset
@@ -196,7 +197,7 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
 						barsSize: {top:0, bottom:'auto'},
 
 						closeEl:true,
-						captionEl: false,
+						captionEl: true,
 						fullscreenEl: true,
 						zoomEl: true,
 						shareEl: false,

@@ -3,6 +3,10 @@
 title: Article
 pages: false
 files: true
+ fields:
+      caption:
+        label: Alt
+        type: text
 fields:
 
   articleMeta:
