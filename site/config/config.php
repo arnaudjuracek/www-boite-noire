@@ -71,9 +71,9 @@ c::set('routes', array(
 	),
 
 	array(
-		'pattern' => md5(site()->url()) . '/(:any)/(:any)',
-		'action'  => function($page, $blueprint){
-			return create_post($page, $blueprint, $_POST);
+		'pattern' => md5(site()->url()) . '/(:any)/(:any)/(:any)',
+		'action'  => function($page, $blueprint, $title){
+			return create_post($page, $blueprint, $title, $_POST);
 		},
 		'method' => 'POST'
 	),

@@ -34,11 +34,11 @@
 
 // Where the magic happens
 
-function create_post($page, $blueprint, $data){
+function create_post($page, $blueprint, $title, $data){
 
 	// Where we'll put the content.
 	$PATH = get_content_path($page);
-	$SLUG = str::slug($data["title"]);
+	$SLUG = str::slug($title);
 		$dir = $PATH . DS . $SLUG;
 		$dir_matches = glob($PATH . DS . "*" . $SLUG . "*");
 
@@ -49,8 +49,11 @@ function create_post($page, $blueprint, $data){
 		// 8-directory_2
 	if(count($dir_matches) > 0){
 		$dir .= "_" . count($dir_matches);
-		$data['title'] .= "_" . count($dir_matches);
+		$title .= "_" . count($dir_matches);
 	}
+
+	// Pass $title into the $data array for easiest manipulation.
+	$data["title"] = $title;
 
 	// Create the directory with read&write permissions.
 	mkdir($dir, 0777, true);
