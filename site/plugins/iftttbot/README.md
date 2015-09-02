@@ -39,7 +39,7 @@ to the url :
 ```
 http://my-kirby-website/iftttbot/tweets/tweet-blueprint/{{CreatedAt}}
 ```
-will create a new article in `/content/2-tweets/august-23-2010-at-11-01pm/tweet-blueprint.txt`, with `tweet-blueprint.txt`containing :
+will create a new article in `/content/2-tweets/august-23-2010-at-11-01pm/tweet-blueprint.txt` each time the recipe is triggered, with `tweet-blueprint.txt`containing at least :
 ```markdown
 Title: August 23, 2010 at 11:01PM
 
@@ -60,7 +60,7 @@ Url: http://twitter.com/ifttt/status/33262764734693376
 
 ## Names and titles
 * The plugin is designed to ignore visibility status, i.e `/content/1-articles/8-name-of-the-article`, `/content/articles/name-of-the-article` and `/content/1-articles/name-of-the-article` will all refer to the same `/content/articles/name-of-the-article`. 
-* If `/content/articles/name-of-the-article/` already exists, the plugin will create a new article in `/content/articles/name-of-the-article_1`, and so on.
+* If `/content/articles/name-of-the-article/` already exists, the plugin will create a new article in `/content/articles/name-of-the-article_1`, and so on. If you want to be able to override existing article, you'll have to comment the `(count($dir_matches) > 0)` condition in the `create_post()` function.
 * The article's title will be automatically passed in the `str::slug()` function, so don't be afraid to use spaces or special chars.
 
 ## Without IFTTT
