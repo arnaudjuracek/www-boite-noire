@@ -37,18 +37,18 @@ c::set('lowResPreview', true);
 
 c::set('languages', array(
   array(
-    'code'    => 'fr',
-    'name'    => 'French',
-    'default' => true,
-    'locale'  => 'fr_FR',
-    'url'     => '/',
+	'code'    => 'fr',
+	'name'    => 'French',
+	'default' => true,
+	'locale'  => 'fr_FR',
+	'url'     => '/',
   ),
 /*
   array(
-    'code'    => 'en',
-    'name'    => 'English',
-    'locale'  => 'en_US',
-    'url'     => '/en',
+	'code'    => 'en',
+	'name'    => 'English',
+	'locale'  => 'en_US',
+	'url'     => '/en',
   ),
 */
 ));
@@ -57,16 +57,32 @@ c::set('languages', array(
 c::set('smartypants', true);
 c::set('panel.stylesheet', 'assets/css/custompanel.css');
 c::set('routes', array(
-    array(
-        'pattern' => 'sitemap.xml',
-        'action'  => function() {
-            return site()->visit('xmlsitemap');
-        }
-    ),
-    array(
-        'pattern' => 'sitemap',
-        'action'  => function() {
-            return go('sitemap.xml');
-        }
-    ),
+	array(
+		'pattern' => 'sitemap.xml',
+		'action'  => function() {
+			return site()->visit('xmlsitemap');
+		}
+	),
+	array(
+		'pattern' => 'sitemap',
+		'action'  => function() {
+			return go('sitemap.xml');
+		}
+	),
+
+	array(
+		'pattern' => md5(site()->url()) . '/(:any)/(:any)',
+		'action'  => function($page, $blueprint){
+			return create_post($page, $blueprint, $_POST);
+		},
+		'method' => 'POST'
+	),
+
+	array(
+		'pattern' => 'md5',
+		'action'  => function(){
+			echo site()->url() . '<br>';
+			echo md5(site()->url());
+		},
+	),
 ));
