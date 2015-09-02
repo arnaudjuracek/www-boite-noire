@@ -1,33 +1,50 @@
 # IFTTT BOT plugin
 
-A plugin for [Kirby CMS](http://getkirby.com) to automatically post from a make request. Designed for IFTTT's Make channel.
+A plugin for [Kirby CMS](http://getkirby.com) to automatically post from a make request. Designed for IFTTT's [Maker channel](https://ifttt.com/channels/maker/).
 
-## Installation
-### Kirby side
-* Put the `iftttbot` folder in `/site/plugins/`
+## Kirby installation
+* Put the `iftttbot/` folder in `/site/plugins/`
 * In `config.php`, create a new route (http://getkirby.com/docs/advanced/routing) :
-```
+```php
 c::set('routes', array(
   array(
-    'pattern' => 'iftttbot/(:any)/(:any)',
-    'action'  => function($page, $blueprint){
-        return create_post($page, $blueprint, $_POST);
+    'pattern' => 'iftttbot/(:any)/(:any)/(:any)',
+    'action'  => function($page, $blueprint, $title){
+        return create_post($page, $blueprint, $title, $_POST);
       },
     'method' => 'POST'
   ),
  ));
 ```
 
-### IFTTT side
+## IFTTT configuration
 * Select whatever trigger you want to use.
-* Select (and activate) the Action Channel "Make".
-* Select the "Make a web request" action.
-* 
+* Select (and activate) the Action Channel *Maker*.
+* Select the *Make a web request* action.
+* Fill the url field with the url you routed in `config.php`. The three params are pretty self explanatory, and can be dynamic IFTTT ingredients. For example :
+```
+http://my-kirby-website/iftttbot/projects/image-blueprint/{{ImageTitle}}
+```
+* Select the `POST` method.
+* Select the `application/x-www-form-urlencoded` Content Type.
+* In the *Body*, write a valid [application/x-www-form-urlencoded content](http://www.w3.org/TR/html401/interact/forms.html#h-17.13.4.1). This string can embed any of your [blueprint's fields name](http://getkirby.com/docs/panel/blueprints/form-fields). If you want to skip some of them, you can : Kirby won't bother, and create empty values the next time you will save the article in the panel. In the same way, you can pass some paramaters which aren't present in the blueprint : again, Kirby won't bother, and just skip them. This can be usefull to pass some additionnal options to the plugin, to make a post visible by default for example.
+* Click the "Create Action" big blue button. Profit.
 
-
-## Usage
 
 ## Security
+Despite having the article posted invisible by default, we chose to add a token in the routed url to avoid spam and various possible injections.
+A simple implementation of this technic would be to get a md5 hash based on the website's url or title :
+```php
+c::set('routes', array(
+	array(
+		'pattern' => md5(site()->url()) . '/(:any)/(:any)/(:any)',
+		'action'  => function($page, $blueprint, $title){
+			return create_post($page, $blueprint, $title, $_POST);
+		},
+		'method' => 'POST'
+	),
+));
+```
 
 ## Authors
 Louis Eveillard & Arnaud Juracek
