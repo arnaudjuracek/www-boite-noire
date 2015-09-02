@@ -6,27 +6,7 @@
  * v 1.0.0
  * Louis Eveillard & Arnaud Juracek
  *
- *
- * config.php :
- *
- *
- * c::set('routes', array(
- *	array(
- *		'pattern' => md5(site()->url()) . '/(:any)/(:any)',
- *		'action'  => function($page, $blueprint){
- *			return create_post($page, $blueprint, $_POST);
- *		},
- *		'method' => 'POST'
- *	),
- *
- *	array(
- *		'pattern' => 'md5',
- *		'action'  => function(){
- *			echo site()->url() . '<br>';
- *			echo md5(site()->url());
- *		},
- *	),
- * ));
+ * https://github.com/arnaudjuracek/neomateriality/tree/master/site/plugins/iftttbot
  *
  */
 
