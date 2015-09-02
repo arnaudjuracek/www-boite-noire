@@ -22,6 +22,8 @@ $("document").ready( function() {
 
 				$(this).find('header').css('opacity', window.pageYOffset.map(position.top, position.bottom, 1, 0));
 			});
+		}else{
+			$('article header').css('opacity', 1);
 		}
 	});
 
