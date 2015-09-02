@@ -59,9 +59,22 @@ Url: http://twitter.com/ifttt/status/33262764734693376
 ```
 
 ## Names and titles
-* The plugin is designed to ignore visibility status, i.e `/content/1-articles/8-name-of-the-article`, `/content/articles/name-of-the-article` and `/content/1-articles/name-of-the-article` will all refer to the same `/content/articles/name-of-the-article`. 
+* The plugin is designed to ignore visibility status, i.e 
+```
+/content/1-articles/8-name-of-the-article
+```
+```
+/content/1-articles/name-of-the-article
+```
+```
+/content/articles/name-of-the-article
+```
+will all refer to the same
+```
+/content/articles/name-of-the-article
+``` 
 * If `/content/articles/name-of-the-article/` already exists, the plugin will create a new article in `/content/articles/name-of-the-article_1`, and so on. If you want to be able to override existing article, you'll have to comment the `(count($dir_matches) > 0)` condition in the `create_post()` function.
-* The article's title will be automatically passed in the `str::slug()` function, so don't be afraid to use spaces or special chars.
+* The article's title will be passed in the `str::slug()` function, so don't be afraid to use spaces or special chars.
 
 ## Without IFTTT
 Of course, you can also use the `create_post()` function to batch create post, or make some other automation without IFTTT service.
@@ -69,8 +82,8 @@ Of course, you can also use the `create_post()` function to batch create post, o
 
 
 ## Security
-Despite having the article posted invisible by default, we chose to add a token in the routed url to avoid spam and various possible injections.
-A simple implementation of this technic would be to get a md5 hash based on the website's url or title :
+Despite having the article posted invisible by default, we personally chose to add a token in the routed url to avoid spam and various possible injections.
+A simple implementation of this technic would be to get a md5 hash of the website's url or title :
 ```php
 c::set('routes', array(
 	array(
