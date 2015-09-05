@@ -12,68 +12,79 @@
 
 
 @BLACK: #292929;
-@COLOR: rgba(126, 197, 247, 1); //rgb(247, 126, 148, .9);
+@GRAY: rgba(0,0,0, 0.3);
+@OUTPUT: #9BDBCA; //rgba(126, 197, 247, 1);
+@INPUT: #E5705E; //rgb(247, 126, 148, .9);
 
-body{
-	color: @BLACK;
-}
+@AFFIX-HEIGHT: 100px;
+
+body{ color: @BLACK; }
 
 a{
 	color: inherit;
 	cursor: pointer;
 
-	color: @COLOR;
+	color: @OUTPUT;
 	transition:	color .25s ease-in-out;
 
 	&:hover, &:focus{
 		color: @BLACK;
-    	text-decoration: none;
+		text-decoration: none;
 	}
 }
 
+//--------------------------------------------------------------------
+
 header.main{
-	.container;
+	.container-fluid;
+	width: 100%;
+	text-transform: lowercase;
+	z-index: 3;
+	font-size: 3em;
+
+	color: @OUTPUT;
+	&[data-color='input']{color: @INPUT;}
+
 	@media @tablet{
+		font-size: 5em;
 		position: fixed;
-		z-index: 999;
-		margin-bottom: 100px;
+		text-align: center;
+		margin-bottom: @AFFIX-HEIGHT;
 	}
 
-	text-transform: lowercase;
-
 	a.title{
-		position: fixed;
-		font-size: 5em;
-		@media @phone-only{
-			font-size: 3em;
-		}
-		@media @tablet{
-			right: 50%;
-			text-align: right;
-		}
+		color: inherit;
+		transition: color .25s east-out;
+		&:hover{color: @BLACK;}
+	}
+
+	.tag{
+		color: inherit;
+		opacity: .3;
+		transition: color .25s east-out;
 	}
 
 	.button{
-		font-size: 20px;
-		position: fixed;
-		top: 10px;
-		right: 10px;
+		@media @phone-only{display:none;}
 	}
 
 }
 
+//--------------------------------------------------------------------
+
 main{
+	position: relative;
 	.container;
+	z-index: 2;
 
 	.articles-container{
-		padding-top: 100px;
+		@media @tablet{padding-top: @AFFIX-HEIGHT;}
 
 		article{
 			.make-row;
 			.clearfix;
-
-			margin-bottom: 50px;
 			position: relative;
+			&:not(:last-child){margin-bottom: 100px;}
 
 			.gallery{
 				width: 100%;
@@ -85,49 +96,71 @@ main{
 
 			header{
 				.make-md-column(6);
-				@media @tablet{
-					text-align: right;
-				}
+				@media @tablet{text-align: right;}
+				@media @phone-only{margin-bottom: 2em;}
+				background: rgba(255,255,255,0);
+				background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(255,255,255,.7) 49%, rgba(255,255,255,.7) 49%, rgba(255,255,255,.7) 51%, rgba(255,255,255,0) 100%);
+				background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0)), color-stop(49%,rgba(255,255,255,.7)), color-stop(49%,rgba(255,255,255,.7)), color-stop(51%,rgba(255,255,255,.7)), color-stop(100%,rgba(255,255,255,0)));
+				background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,.7) 49%,rgba(255,255,255,.7) 49%,rgba(255,255,255,.7) 51%,rgba(255,255,255,0) 100%);
+				background: -o-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,.7) 49%,rgba(255,255,255,.7) 49%,rgba(255,255,255,.7) 51%,rgba(255,255,255,0) 100%);
+				background: -ms-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,.7) 49%,rgba(255,255,255,.7) 49%,rgba(255,255,255,.7) 51%,rgba(255,255,255,0) 100%);
+				background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(255,255,255,.7) 49%,rgba(255,255,255,.7) 49%,rgba(255,255,255,.7) 51%,rgba(255,255,255,0) 100%);
+				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='rgba(255,255,255,0)', endColorstr='rgba(255,255,255,0)',GradientType=0 );
+
 				h1{
+					@media @tablet{margin-bottom: 20px;}
 					margin-top: 0;
 					font-size: 30px;
-					margin-bottom: 20px;
 					font-weight: normal;
 					text-transform: lowercase;
-					background-color: transparent;
 				}
 				.meta{
+					color: @GRAY;
+					text-transform: lowercase;
 					*{
 						display: inline;
-						@media @tablet{ display: block; }
+						@media @tablet{display: block;}
 					}
+
+					li a,
+					.edit{display: inline;}
+
 					.tags{
 						list-style: none;
 						padding: 0;
+					}
+					.edit{
+						@media @phone-only{display: none;}
+						font-size: 2em;
 					}
 				}
 			}
 
 			.content{
 				.make-md-column(6);
-				padding-top: 53px;
-
-				p{
-					margin: 0 0 10px 0;
-				}
+				@media @tablet{padding-top: 53px;}
+				p{margin: 0 0 10px 0;}
 			}
 
+			&[data-type="input"]{
+				a{color: @INPUT;}
+				header{
+					.make-md-column-push(6);
+					text-align: left;
+				}
+				.content{.make-md-column-pull(6);}
+			}
 
 			@media @tablet{
 				&.affix-top{
-						header{
-							position: fixed;
-							top: 100px;
-							right: 50%;
-						}
-						.content{
-							.make-md-column-offset(6);
-						}
+					header{
+						position: fixed;
+						top: @AFFIX-HEIGHT;
+						right: 50%;
+					}
+					.content{
+						.make-md-column-offset(6);
+					}
 				}
 
 				&.affix-bottom{
@@ -143,4 +176,46 @@ main{
 			}
 		}
 	}
+}
+
+//--------------------------------------------------------------------
+
+footer.footer{
+	position: relative;
+	z-index: 1;
+
+	&::before,
+	&::after{
+		font-size: 3em;
+		position: fixed;
+		bottom: 40px;
+	}
+
+	&::before{
+		content: "input";
+		color: @INPUT;
+		border-color: @INPUT;
+
+		left: 50%;
+		margin-left: 8px;
+	}
+
+	&::after{
+		content: "output";
+		color: @OUTPUT;
+		border-color: @OUTPUT;
+
+		right: 50%;
+		margin-right: 8px;
+	}
+
+	.copyright{
+		position: absolute;
+		left: 50%;
+		margin-left: 8px;
+		margin-top: 20px;
+		color: @GRAY;
+		text-align: center;
+	}
+
 }

@@ -3,6 +3,8 @@
 title: Blog
 pages: true
   template: article
+  sort: flip
+  num: date
 fields:
   title:
     label: Title

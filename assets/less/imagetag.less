@@ -25,18 +25,17 @@
 }
 
 .media-image img {
-	transition: opacity 0.4s ease-out,-webkit-filter 0.8s linear,-moz-filter 0.8s linear,-o-filter 0.8s linear,filter 0.8s linear;
 }
 
 .media-image .image {
-	background-color: transparent;
+	background-color: rgba(0,0,0,.1);
 }
 .media-image .lazyload, .media-image .lazyloading {
-    opacity: 1;
-
+    opacity: 0;
 }
 
 .media-image .lazyloaded {
 	opacity: 1;
+	transition: opacity 0.4s ease-out,-webkit-filter 0.8s linear,-moz-filter 0.8s linear,-o-filter 0.8s linear,filter 0.8s linear;
 }
 

@@ -19,11 +19,21 @@ fields:
   date:
     label:  Date
     type:   date
+    default: today
     width:  1/2
-    format: MM/DD/YYYY
+    format: DD/MM/YYYY
   tags:
     label: Tags
     type:  tags
+    width: 3/4
+  io:
+    label: IO
+    type: radio
+    width: 1/4
+    default: output
+    options:
+      input: input
+      output: output
 
   articleContent:
     label: Article Content

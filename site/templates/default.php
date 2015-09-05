@@ -18,7 +18,7 @@
 
 		<div class="articles-container">
 			<?php foreach($articles as $article):?>
-				<article>
+				<article data-type="<?php echo $article->io() ?>">
 					<header>
 						<h1>
 							<a href="<?php echo $article->url() ?>">
@@ -28,7 +28,7 @@
 
 						<div class="meta">
 							<time datetime="<?php echo $article->date('c') ?>">
-								<?php echo $article->date('F dS, Y'); ?>
+								<?php echo $article->date('d.m.Y'); ?>
 							</time>
 
 							<?php if($article->tags() != ''): ?>
@@ -42,6 +42,11 @@
 									<?php endforeach ?>
 								</ol>
 							<?php endif ?>
+							<?php if($user = site()->user() and $user->hasPanelAccess()) : ?>
+								<a href="<?php echo getPanelURL( $article, 'show') ?>" class="edit">
+									<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+								</a>
+							<?php endif; ?>
 						</div>
 					</header>
 					<div class="content">
