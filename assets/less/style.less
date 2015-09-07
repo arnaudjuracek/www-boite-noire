@@ -130,7 +130,7 @@ main{
 					quotes: "«\00A0" "\00A0»";
 					padding: 0px;
 
-					*{
+					& > *{
 						display: inline;
 						background-color: fade(@OUTPUT, 10%);
 						&::before{
@@ -185,7 +185,7 @@ main{
 						background-color: fade(@INPUT,30%);
 						outline-color: fade(@INPUT, 30%);
 					}
-					blockquote *{
+					blockquote > *{
 						&::before, &::after{color: @INPUT;}
 						background-color: fade(@INPUT, 10%);
 					}
