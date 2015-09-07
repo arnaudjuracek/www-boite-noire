@@ -86,26 +86,10 @@ main{
 			position: relative;
 			&:not(:last-child){margin-bottom: 100px;}
 
-			.gallery{
-				width: 100%;
-				img{
-					width: 100%;
-					height: auto;
-				}
-			}
-
 			header{
 				.make-md-column(6);
 				@media @tablet{text-align: right;}
 				@media @phone-only{margin-bottom: 2em;}
-				background: rgba(255,255,255,0);
-				background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(255,255,255,.7) 49%, rgba(255,255,255,.7) 49%, rgba(255,255,255,.7) 51%, rgba(255,255,255,0) 100%);
-				background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0)), color-stop(49%,rgba(255,255,255,.7)), color-stop(49%,rgba(255,255,255,.7)), color-stop(51%,rgba(255,255,255,.7)), color-stop(100%,rgba(255,255,255,0)));
-				background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,.7) 49%,rgba(255,255,255,.7) 49%,rgba(255,255,255,.7) 51%,rgba(255,255,255,0) 100%);
-				background: -o-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,.7) 49%,rgba(255,255,255,.7) 49%,rgba(255,255,255,.7) 51%,rgba(255,255,255,0) 100%);
-				background: -ms-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,.7) 49%,rgba(255,255,255,.7) 49%,rgba(255,255,255,.7) 51%,rgba(255,255,255,0) 100%);
-				background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(255,255,255,.7) 49%,rgba(255,255,255,.7) 49%,rgba(255,255,255,.7) 51%,rgba(255,255,255,0) 100%);
-				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='rgba(255,255,255,0)', endColorstr='rgba(255,255,255,0)',GradientType=0 );
 
 				h1{
 					@media @tablet{margin-bottom: 20px;}
@@ -139,7 +123,52 @@ main{
 			.content{
 				.make-md-column(6);
 				@media @tablet{padding-top: 53px;}
+
+				blockquote{
+					font-size: inherit;
+					border: none;
+					quotes: "«\00A0" "\00A0»";
+					padding: 0px;
+
+					*{
+						display: inline;
+						background-color: fade(@OUTPUT, 10%);
+						&::before{
+							color: @OUTPUT;
+							font-weight: bold;
+							content: open-quote;
+							margin-left: -.65em;
+						}
+						&::after{
+							color: @OUTPUT;
+							font-weight: bold;
+							content: close-quote;
+							background-color: #FFF;
+						}
+					}
+				}
+
+				strong{
+					background-color: fade(@OUTPUT, 30%);
+					outline: 2px solid fade(@OUTPUT, 30%);
+					font-weight: normal;
+				}
+
 				p{margin: 0 0 10px 0;}
+				iframe{width: 100%;}
+				h1{
+					color: @OUTPUT;
+					font-size: 1.5em;
+					margin-top: 0px;
+					font-weight: normal;
+				}
+				.gallery{
+					width: 100%;
+					img{
+						width: 100%;
+						height: auto;
+					}
+				}
 			}
 
 			&[data-type="input"]{
@@ -148,7 +177,19 @@ main{
 					.make-md-column-push(6);
 					text-align: left;
 				}
-				.content{.make-md-column-pull(6);}
+				.content{
+					.make-md-column-pull(6);
+
+					h1{color: @INPUT;}
+					strong{
+						background-color: fade(@INPUT,30%);
+						outline-color: fade(@INPUT, 30%);
+					}
+					blockquote *{
+						&::before, &::after{color: @INPUT;}
+						background-color: fade(@INPUT, 10%);
+					}
+				}
 			}
 
 			@media @tablet{
@@ -184,30 +225,32 @@ footer.footer{
 	position: relative;
 	z-index: 1;
 
-	&::before,
-	&::after{
-		font-size: 3em;
-		position: fixed;
-		bottom: 40px;
-	}
+// 	&::before,
+// 	&::after{
+// 		font-size: 3em;
+// 		position: fixed;
+// 		bottom: 50vh; //40px;
+// 	}
 
-	&::before{
-		content: "input";
-		color: @INPUT;
-		border-color: @INPUT;
+// 	&::before{
+// 		content: "input";
+// 		color: @INPUT;
+// 		border-color: @INPUT;
 
-		left: 50%;
-		margin-left: 8px;
-	}
+// 		.rotate(-90deg);
+// 		left: 0%;
+// 		margin-le5t: 8px;
+// 	}
 
-	&::after{
-		content: "output";
-		color: @OUTPUT;
-		border-color: @OUTPUT;
+// 	&::after{
+// 		content: "output";
+// 		color: @OUTPUT;
+// 		border-color: @OUTPUT;
 
-		right: 50%;
-		margin-right: 8px;
-	}
+// 		.rotate(+90deg);
+// 		right: 0%;
+// 		margin-right: 8px;
+// 	}
 
 	.copyright{
 		position: absolute;

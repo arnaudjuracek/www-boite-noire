@@ -34,7 +34,7 @@ kirbytext::$tags['video'] = array(
 
 		// display the embedcode
 		if($host == 'vimeo') {
-			$videoelement = '<iframe src="//player.vimeo.com/video/' . $video . '?title=0&amp;byline=0&amp;portrait=0&amp;color=0000ff" width="' . c::get('video.height', '500') . '" height="' . c::get('video.width', '281') . '" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+			$videoelement = '<iframe src="//player.vimeo.com/video/' . $video . '?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff" width="' . c::get('video.height', '500') . '" height="' . c::get('video.width', '281') . '" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
 		}
 		elseif ($host == 'youtube') {
 			$videoelement = '<iframe width="' . c::get('video.width', '500') . '" height="' . c::get('video.height', '281') . '" src="//www.youtube.com/embed/' . $video . '?rel=0" frameborder="0" allowfullscreen></iframe>';

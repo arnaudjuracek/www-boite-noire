@@ -11,6 +11,8 @@
 								->visible()
 								->filterBy('tags', $tag, ',')
 								->flip();
+			}else if(param('invisible') && $user = site()->user() and $user->hasPanelAccess()){
+				$articles = $pages->find('blog')->children()->flip()->sortBy('date', 'desc');
 			}else{
 				$articles = $pages->find('blog')->children()->visible()->flip();
 			}

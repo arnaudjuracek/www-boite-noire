@@ -1,6 +1,7 @@
 $("document").ready( function() {
 	initPhotoSwipeFromDOM('.gallery');
 
+	$('header.main').attr('data-color', $('article').first().attr('data-type'));
 
 	$(window).on('scroll resize', function(){
 		if($(document).width()>= 992){
@@ -17,7 +18,7 @@ $("document").ready( function() {
 						$(this).addClass('affix-top');
 						$(this).removeClass('affix-bottom');
 
-						$('header.main a.title').attr('data-color', $(this).attr('data-type'));
+						$('header.main').attr('data-color', $(this).attr('data-type'));
 					}
 				}else $(this).removeClass('affix-top affix-bottom');
 
