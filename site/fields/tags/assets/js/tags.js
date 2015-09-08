@@ -257,34 +257,53 @@
 
 	// custom tags list
 	this.create_tags_list = function(){
-		self.tags_list = $('<div class="tags-list"></div>').css({
-			'font-size'   : self.input.css('font-size'),
-			'font-family' : self.input.css('font-family'),
-			'padding'     : self.input.css('padding')
-		});
+		// create all the markup
+			self.tags_list = $('<div class="tags-list"><div class="tags-list-container" style="display:none"></div></div>').css({
+				'font-size'   : self.input.css('font-size'),
+				'font-family' : self.input.css('font-family'),
+				'padding'     : self.input.css('padding')
+			});
 
-		// self.tags_list.append('<div class="text tags-list-helper">List des tags disponibles : </div>')
+			self.tags_list.toggler = $('<a class="tags-list-toggler label-option" title="Ouvrir/Fermer la liste de tags"><i class="icon icon-left fa fa-chevron-circle-down"></i>Voir tous les tags</a>').css({
+				'position'	  		: 'relative',
+				'display'			: 'inline-block',
+				'cursor'	  		: 'pointer',
+				'margin-top' 		: '.5em',
+				'margin-bottom' 	: '.5em'
+			});
+			self.tags_list.prepend(self.tags_list.toggler);
+
+			self.tags_list.toggler.on('click', function(){
+				$(this).find('i').toggleClass('fa-chevron-circle-up fa-chevron-circle-down');
+				self.tags_list.find('.tags-list-container').slideToggle('fast');
+			});
+
 
 		// custom add tag function (used in self.remove())
-		self.tags_list.add = function(tag){
-			if( self.tags_list.find('.tag[data-tag="'+tag+'"]').length<1 && $.inArray(""+tag, self.tags_list.data('initial_list')) > 0 ){
-				var tag = $('<span class="tag" data-tag="'+tag+'"><button class="tag-label">'+tag+'</button><i class="tag-x">+</i></span>');
-				tag.on('click', function(){
-					self.add($(this).attr('data-tag'));
-					$(this).remove();
-				});
-				self.tags_list.append(tag);
+			self.tags_list.add = function(tag){
+				if( self.tags_list.find('.tag[data-tag="'+tag+'"]').length<1 && $.inArray(""+tag, self.tags_list.data('initial_list')) > 0 ){
+					var tag = $('<span class="tag" data-tag="'+tag+'"><button class="tag-label">'+tag+'</button><i class="tag-x">+</i></span>');
+
+					tag.on('click', function(){
+						self.add($(this).attr('data-tag'));
+						$(this).next().find('button').trigger('focus');
+						$(this).remove();
+					});
+
+					self.tags_list.find('.tags-list-container').append(tag);
+				}
 			}
-		}
+
 
 		// get the list of tags using the URL for autocomplete.js
-		$.getJSON(self.input.data('url'), function(data) {
-			self.tags_list.data('initial_list', data);
-			$.each(data, function(){
-				if(self.get(this).length<1) self.tags_list.add(this);
+			$.getJSON(self.input.data('url'), function(data) {
+				data.sort(function(a,b){ return ((a.toLowerCase() < b.toLowerCase()) ? -1 : ((a.toLowerCase() > b.toLowerCase()) ? 1 : 0));	});
+				self.tags_list.data('initial_list', data);
+				$.each(data, function(){
+					if(self.get(this).length<1) self.tags_list.add(this);
+				});
+				self.element.parents('.field').append(self.tags_list);
 			});
-			self.element.parents('.field').append(self.tags_list);
-		});
 	};
 
 	// plugin setup
