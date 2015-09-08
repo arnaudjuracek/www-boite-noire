@@ -7,8 +7,8 @@ $("document").ready( function() {
 		if($(document).width()>= 992){
 			$('article').each(function(){
 				var position = {
-					top: $(this).offset().top - $('header.main').height(),
-					bottom: $(this).offset().top - $('header.main').height() + $(this).height() - $(this).find('header').height()
+					top: $(this).offset().top - 100,
+					bottom: $(this).offset().top - 100 + $(this).height() - $(this).find('header').height()
 				};
 				if(window.pageYOffset >= position.top){
 					if(window.pageYOffset >= position.bottom){

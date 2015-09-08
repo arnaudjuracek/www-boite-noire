@@ -47,25 +47,71 @@ header.main{
 
 	@media @tablet{
 		font-size: 5em;
-		position: fixed;
 		text-align: center;
+		margin-top: 1em;
 		margin-bottom: @AFFIX-HEIGHT;
 	}
 
 	a.title{
 		color: inherit;
-		transition: color .25s east-out;
+		transition: color .25s ease-out;
 		&:hover{color: @BLACK;}
+	}
+
+	.description{
+		font-weight: normal;
+		font-size: 20px;
+		color: @GRAY;
+		.content{
+			display: inline-block;
+			width: 30%;
+		}
 	}
 
 	.tag{
 		color: inherit;
 		opacity: .3;
-		transition: color .25s east-out;
+		transition: color .25s ease-out;
 	}
 
 	.button{
 		@media @phone-only{display:none;}
+	}
+
+
+	&::before,
+	&::after{
+		position: fixed;
+		top: @AFFIX-HEIGHT;
+		margin-top: -.5em;
+		opacity: .05;
+		transition: opacity .25s ease-out;
+	}
+
+	&::before{
+		content: "i\2002\2014";
+		color: @INPUT;
+		left: @AFFIX-HEIGHT;
+		margin-left: 8px;
+	}
+
+	&::after{
+		content: "\2014\2002o";
+		color: @OUTPUT;
+		right: @AFFIX-HEIGHT;
+		margin-right: 8px;
+	}
+
+	&[data-color='input']::before,
+	&[data-color='output']::after{ opacity: 1; }
+
+	&:hover::before{
+		opacity: 1;
+		content: "input\2002\2014";
+	}
+	&:hover::after{
+		opacity: 1;
+		content: "\2014\2002output";
 	}
 
 }
@@ -173,6 +219,7 @@ main{
 
 			&[data-type="input"]{
 				a{color: @INPUT;}
+				a:hover{color: @BLACK;}
 				header{
 					.make-md-column-push(6);
 					text-align: left;
@@ -224,33 +271,6 @@ main{
 footer.footer{
 	position: relative;
 	z-index: 1;
-
-// 	&::before,
-// 	&::after{
-// 		font-size: 3em;
-// 		position: fixed;
-// 		bottom: 50vh; //40px;
-// 	}
-
-// 	&::before{
-// 		content: "input";
-// 		color: @INPUT;
-// 		border-color: @INPUT;
-
-// 		.rotate(-90deg);
-// 		left: 0%;
-// 		margin-le5t: 8px;
-// 	}
-
-// 	&::after{
-// 		content: "output";
-// 		color: @OUTPUT;
-// 		border-color: @OUTPUT;
-
-// 		.rotate(+90deg);
-// 		right: 0%;
-// 		margin-right: 8px;
-// 	}
 
 	.copyright{
 		position: absolute;
