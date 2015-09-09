@@ -78,41 +78,52 @@ header.main{
 		@media @phone-only{display:none;}
 	}
 
-
-	&::before,
-	&::after{
+	aside.io{
 		position: fixed;
 		top: @AFFIX-HEIGHT;
 		margin-top: -.5em;
-		opacity: .05;
-		transition: opacity .25s ease-out;
+		width: inherit;
+		cursor: default;
+
+		#input, #output{
+			position: absolute;
+			opacity: 0;
+			transition:
+				opacity .25s ease-out,
+				left .25s ease-out,
+				right .25s ease-out;
+		}
+
+		#input{
+			color: @INPUT;
+			left: -50%;
+			margin-left: 8px;
+		}
+
+		#output{
+			color: @OUTPUT;
+			right: -50%;
+			margin-right: 8px;
+		}
+
+		.autohide{
+			display: inline-block;
+			overflow: hidden;
+			vertical-align: bottom;
+			max-width: 0;
+			transition: max-width .25s ease-out;
+		}
 	}
 
-	&::before{
-		content: "i\2002\2014";
-		color: @INPUT;
+	&[data-color='input'] aside.io #input{
+		opacity: 1;
 		left: @AFFIX-HEIGHT;
-		margin-left: 8px;
 	}
-
-	&::after{
-		content: "\2014\2002o";
-		color: @OUTPUT;
+	&[data-color='output'] aside.io #output{
+		opacity: 1;
 		right: @AFFIX-HEIGHT;
-		margin-right: 8px;
 	}
-
-	&[data-color='input']::before,
-	&[data-color='output']::after{ opacity: 1; }
-
-	&:hover::before{
-		opacity: 1;
-		content: "input\2002\2014";
-	}
-	&:hover::after{
-		opacity: 1;
-		content: "\2014\2002output";
-	}
+	// &:hover aside.io .autohide{max-width: 100%;}
 
 }
 
@@ -200,8 +211,8 @@ main{
 					font-weight: normal;
 				}
 
-				p{margin: 0 0 10px 0;}
-				iframe{width: 100%;}
+				p,
+				.embed-responsive{margin: 0 0 10px 0;}
 				h1{
 					color: @OUTPUT;
 					font-size: 1.5em;

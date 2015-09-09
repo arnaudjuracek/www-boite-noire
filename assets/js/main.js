@@ -28,7 +28,7 @@ $("document").ready( function() {
 		}else $('article header').css('opacity', 1);
 	});
 
-	// $('aside.io').affix({offset:{top:50}});
+	$('header.main').affix();
 
 
 });
