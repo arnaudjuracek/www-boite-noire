@@ -89,4 +89,4 @@ thumbs/*
 # Ignore content folder (separate repository and/or submodule)
 # ----------------------------------------------------------------------
 
-# content
+content
