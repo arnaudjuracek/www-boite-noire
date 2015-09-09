@@ -20,8 +20,13 @@ fields:
     label:  Date
     type:   date
     default: today
-    width:  1/2
+    width:  1/4
     format: DD/MM/YYYY
+  time:
+    label:  Time
+    type:   time
+    default: now
+    width:  1/4
   tags:
     label: Tags
     type:  tags
