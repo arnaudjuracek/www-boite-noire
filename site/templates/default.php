@@ -11,10 +11,10 @@
 								->visible()
 								->filterBy('tags', $tag, ',')
 								->sortBy('date', 'desc', 'time', 'desc');
-			}else if(param('invisible') && $user = site()->user() and $user->hasPanelAccess()){
+			}else if(param('invisible') && $user = site()->user() && $user->hasPanelAccess()){
 				$articles = $pages->find('blog')->children()->sortBy('date', 'desc', 'time', 'desc');
 			}else{
-				$articles = $pages->find('blog')->children()->visible()->flip();
+				$articles = $pages->find('blog')->children()->visible()->sortBy('date', 'desc', 'time', 'desc');
 			}
 		?>
 
