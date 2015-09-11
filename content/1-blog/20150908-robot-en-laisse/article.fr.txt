@@ -1,0 +1,27 @@
+Title: Robot en laisse
+
+----
+
+Date: 2015-09-08
+
+----
+
+Tags: zumo,comportement
+
+----
+
+Io: output
+
+----
+
+Text: 
+
+Utilisation d'un code de (link: https://github.com/pololu/zumo-shield/blob/master/ZumoExamples/examples/SumoCollisionDetect/SumoCollisionDetect.ino text: test de collision) pour forcer le Zumo a lutter contre la laisse qui lui est attachée.
+
+Le Zumo se déplace normalement jusqu'à tendre la laisse. Quand il ne peut plus avancer, il donne des coups vers l'avant pour essayer d'aller plus loin.
+
+Dans nos essais, le Zumo ne va pas toujours suffisamment vite pour créer un événement de collision. Dans ce cas il continue à rouler à vitesse constante, s'enroulant progressivement autour du point de fixation de sa laisse, créant des spirales.
+
+----
+
+Attachments: _1030202-5.jpg,_1030203-6.jpg

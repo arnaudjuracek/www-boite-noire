@@ -1,0 +1,21 @@
+Title: Hello ZUMO
+
+----
+
+Date: 2015-08-28
+
+----
+
+Tags: zumo,arduino,vine
+
+----
+
+Text: (vine: https://vine.co/v/ejxgazwnKYb size:600)
+
+----
+
+Io: output
+
+----
+
+Attachments: 

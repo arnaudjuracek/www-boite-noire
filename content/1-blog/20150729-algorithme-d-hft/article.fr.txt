@@ -1,0 +1,21 @@
+Title: Algorithme d'HFT
+
+----
+
+Date: 2015-07-29
+
+----
+
+Tags: algorithmes,visualisation
+
+----
+
+Io: input
+
+----
+
+Text: Comportement d'algorithmes financiers *High Frequency Trading* (HFT).
+
+----
+
+Attachments: hft.jpg
