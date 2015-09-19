@@ -52,7 +52,9 @@
 						</div>
 					</header>
 					<div class="content">
-						<?php echo kirbytext($article->text()) ?>
+						<div class="text">
+							<?php echo kirbytext($article->text()) ?>
+						</div>
 						<div class="gallery">
 							<?php
 								$filenames = $article->attachments()->split(',');

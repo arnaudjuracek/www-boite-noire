@@ -40,13 +40,13 @@ header.main{
 	width: 100%;
 	text-transform: lowercase;
 	z-index: 3;
-	font-size: 3em;
+	font-size: 5em;
 
 	color: @OUTPUT;
 	&[data-color='input']{color: @INPUT;}
 
 	@media @tablet{
-		font-size: 5em;
+		// font-size: 5em;
 		text-align: center;
 		margin-top: 1em;
 		margin-bottom: @AFFIX-HEIGHT;
@@ -64,7 +64,11 @@ header.main{
 		color: @GRAY;
 		.content{
 			display: inline-block;
-			width: 30%;
+			padding-bottom: 2em;
+			@media @tablet{
+				width: 30%;
+				padding-bottom: 0;
+			}
 		}
 	}
 
@@ -79,6 +83,7 @@ header.main{
 	}
 
 	aside.io{
+		display: none;
 		position: fixed;
 		top: @AFFIX-HEIGHT;
 		margin-top: -.5em;
@@ -131,7 +136,7 @@ header.main{
 
 main{
 	position: relative;
-	.container;
+	.container-fluid;
 	z-index: 2;
 
 	.articles-container{
@@ -179,6 +184,11 @@ main{
 
 			.content{
 				.make-md-column(6);
+				padding: 0 16px;
+				.text >*:not(.embed-responsive):not(.FluidEmbed){
+					max-width: 550px;
+				}
+
 				@media @tablet{padding-top: 53px;}
 
 				blockquote{
@@ -220,10 +230,30 @@ main{
 					font-weight: normal;
 				}
 				.gallery{
+					clear: both;
 					width: 100%;
 					img{
 						width: 100%;
 						height: auto;
+					}
+				}
+
+				.FluidEmbed--16by9{
+					position: relative;
+					display: block;
+					height: 0;
+					padding: 0;
+					overflow: hidden;
+					padding-bottom: 56.25%;
+					margin-bottom: 8px;
+					iframe{
+						position: absolute;
+						top: 0;
+						left: 0;
+						bottom: 0;
+						height: 100%;
+						width: 100%;
+						border: 0;
 					}
 				}
 			}
@@ -237,6 +267,13 @@ main{
 				}
 				.content{
 					.make-md-column-pull(6);
+					& .text > *{
+						width: 100%;
+						clear: both;
+						&:not(.embed-responsive):not(.FluidEmbed){
+							float: right;
+						}
+					}
 
 					h1{color: @INPUT;}
 					strong{
