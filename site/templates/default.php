@@ -11,6 +11,13 @@
 								->visible()
 								->filterBy('tags', $tag, ',')
 								->sortBy('date', 'desc', 'time', 'desc');
+			}else if(param('io')){
+				$io = urldecode(param('io'));
+				$articles = $pages->find('blog')
+								->children()
+								->visible()
+								->filterBy('io', $io)
+								->sortBy('date', 'desc', 'time', 'desc');
 			}else if(param('invisible') && $user = site()->user() && $user->hasPanelAccess()){
 				$articles = $pages->find('blog')->children()->sortBy('date', 'desc', 'time', 'desc');
 			}else{
@@ -29,6 +36,8 @@
 						</h1>
 
 						<div class="meta">
+							<?php if(!isset($io)) $io = $article->io()->html(); ?>
+							<div class="io"><a href="<?php echo url('io:' . urlencode($io)) ?>">&mdash;&ensp;<?php echo $io ?></a></div>
 							<time datetime="<?php echo $article->date('c') ?>">
 								<?php echo $article->date('d.m.Y'); ?>
 							</time>

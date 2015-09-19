@@ -171,9 +171,17 @@ main{
 					li a,
 					.edit{display: inline;}
 
+					.io{
+						margin-bottom: 1em;
+						display: inline-block;
+						background-color: fade(@OUTPUT, 30%);
+						outline: 2px solid fade(@OUTPUT, 30%);
+					}
+
 					.tags{
 						list-style: none;
 						padding: 0;
+
 					}
 					.edit{
 						@media @phone-only{display: none;}
@@ -264,6 +272,10 @@ main{
 				header{
 					.make-md-column-push(6);
 					text-align: left;
+					.io{
+						background-color: fade(@INPUT, 30%);
+						outline: 2px solid fade(@INPUT, 30%);
+					}
 				}
 				.content{
 					.make-md-column-pull(6);
