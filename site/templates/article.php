@@ -14,7 +14,7 @@
 
 					<div class="meta">
 						<?php $io = $article->io()->html(); ?>
-						<div class="io"><a href="<?php echo url('io:' . urlencode($io)) ?>">&mdash;&ensp;<?php echo $io ?></a></div>
+						<div class="io"><a href="<?php echo url('io:' . urlencode($io)) ?>"><span>&mdash;&ensp;</span><?php echo $io ?></a></div>
 						<time datetime="<?php echo $article->date('c') ?>">
 							<?php echo $article->date('d.m.Y'); ?>
 						</time>

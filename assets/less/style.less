@@ -40,17 +40,16 @@ header.main{
 	width: 100%;
 	text-transform: lowercase;
 	z-index: 3;
-	font-size: 5em;
+	text-align: center;
+	margin-top: 1em;
+	margin-bottom: @AFFIX-HEIGHT;
+
+	font-size: 3em;
+	@media @tablet{ font-size: 5em; }
+
 
 	color: @OUTPUT;
 	&[data-color='input']{color: @INPUT;}
-
-	@media @tablet{
-		// font-size: 5em;
-		text-align: center;
-		margin-top: 1em;
-		margin-bottom: @AFFIX-HEIGHT;
-	}
 
 	a.title{
 		color: inherit;
@@ -65,9 +64,15 @@ header.main{
 		.content{
 			display: inline-block;
 			padding-bottom: 2em;
+			width: 50%;
 			@media @tablet{
 				width: 30%;
 				padding-bottom: 0;
+			}
+			@media @phone-only{
+				width: inherit;
+				padding: 0 8px;
+				font-size: 12px;
 			}
 		}
 	}
@@ -77,59 +82,6 @@ header.main{
 		opacity: .3;
 		transition: color .25s ease-out;
 	}
-
-	.button{
-		@media @phone-only{display:none;}
-	}
-
-	aside.io{
-		display: none;
-		position: fixed;
-		top: @AFFIX-HEIGHT;
-		margin-top: -.5em;
-		width: inherit;
-		cursor: default;
-
-		#input, #output{
-			position: absolute;
-			opacity: 0;
-			transition:
-				opacity .25s ease-out,
-				left .25s ease-out,
-				right .25s ease-out;
-		}
-
-		#input{
-			color: @INPUT;
-			left: -50%;
-			margin-left: 8px;
-		}
-
-		#output{
-			color: @OUTPUT;
-			right: -50%;
-			margin-right: 8px;
-		}
-
-		.autohide{
-			display: inline-block;
-			overflow: hidden;
-			vertical-align: bottom;
-			max-width: 0;
-			transition: max-width .25s ease-out;
-		}
-	}
-
-	&[data-color='input'] aside.io #input{
-		opacity: 1;
-		left: @AFFIX-HEIGHT;
-	}
-	&[data-color='output'] aside.io #output{
-		opacity: 1;
-		right: @AFFIX-HEIGHT;
-	}
-	// &:hover aside.io .autohide{max-width: 100%;}
-
 }
 
 //--------------------------------------------------------------------
@@ -150,53 +102,87 @@ main{
 
 			header{
 				.make-md-column(6);
-				@media @tablet{text-align: right;}
-				@media @phone-only{margin-bottom: 2em;}
+				margin: 0 auto 2em auto;
+				max-width: 550px;
+				@media @tablet{
+					text-align: right;
+					max-width: 50%;
+					margin: 0;
+				}
+
+				@media @phone-only{ margin-bottom: 2em; }
 
 				h1{
-					@media @tablet{margin-bottom: 20px;}
+					font-size: 2em;
+					@media @phone-only{ font-size: 1.5em; }
+					@media @tablet{ margin-bottom: 20px; }
 					margin-top: 0;
-					font-size: 30px;
 					font-weight: normal;
 					text-transform: lowercase;
 				}
 				.meta{
 					color: @GRAY;
 					text-transform: lowercase;
+
 					*{
-						display: inline;
-						@media @tablet{display: block;}
+						display: block;
+						@media @phone-only{ display: inline-block; }
 					}
+
+					a{ display: inline-block; }
 
 					time{
-						margin-bottom: .5em;
+						@media @tablet{ margin-bottom: .5em; }
+						@media @phone-only{
+							float: left;
+							&::after{ content: "\2009|\2002"; }
+						}
 					}
 
-					li a,
-					.edit{display: inline;}
-
 					.io{
-						margin-bottom: 1em;
 						display: inline-block;
 						background-color: fade(@OUTPUT, 30%);
 						outline: 2px solid fade(@OUTPUT, 30%);
+						@media @tablet{ margin-bottom: 1em; }
+						span{
+							display: inline;
+							@media @phone-only{
+								display: none;
+							}
+						}
 					}
 
 					.tags{
 						list-style: none;
 						padding: 0;
-
+						@media @phone-only{
+							display: inline;
+							&::before{
+								content: "\2002|\2009";
+								color: @GRAY;
+							}
+						}
 					}
 					.edit{
-						@media @phone-only{display: none;}
 						font-size: 2em;
+						@media @phone-only{display: none;}
 					}
 				}
 			}
 
 			.content{
 				.make-md-column(6);
-				padding: 0 16px;
+				max-width: 550px;
+				margin: 0 auto;
+				@media @tablet{
+					max-width: 50%;
+					margin: 0;
+				}
+
+				@media @phone-only{
+					width: 100%;
+				}
+
 				.text >*:not(.embed-responsive):not(.FluidEmbed){
 					max-width: 550px;
 				}
@@ -337,11 +323,18 @@ footer.footer{
 	z-index: 1;
 
 	.copyright{
-		position: absolute;
-		left: 50%;
-		margin-left: 8px;
-		margin-top: 20px;
 		color: @GRAY;
+		position: relative;
+		width: 100%;
+		max-width: 550px;
+		padding: 0 8px;
+		margin: 20px auto;
+		@media @tablet{
+			position: absolute;
+			left: 50%;
+			width: auto;
+			margin: 20px 0;
+		}
 	}
 
 }
