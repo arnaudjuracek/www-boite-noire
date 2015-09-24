@@ -43,6 +43,7 @@ header.main{
 	text-align: center;
 	margin-top: 1em;
 	margin-bottom: @AFFIX-HEIGHT;
+	border-color: inherit;
 
 	font-size: 3em;
 	@media @tablet{ font-size: 5em; }
@@ -53,8 +54,12 @@ header.main{
 
 	a.title{
 		color: inherit;
-		transition: color .25s ease-out;
-		&:hover{color: @BLACK;}
+
+		border: .1em solid @OUTPUT;
+		&[data-color='output'] &{border-color: @INPUT;}
+		padding: .2em;
+		transition: color .25s ease-out, border-color .25s ease-out;
+		&:hover{color: @BLACK; border-color: @BLACK;}
 	}
 
 	.description{
@@ -158,7 +163,7 @@ main{
 						@media @phone-only{
 							display: inline;
 							&::before{
-								content: "\2002|\2009";
+								content: "\2009|\2009";
 								color: @GRAY;
 							}
 						}
