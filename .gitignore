@@ -91,3 +91,4 @@ thumbs/*
 
 content/*/*/*
 !*.ino
+site/config/config_server.php
