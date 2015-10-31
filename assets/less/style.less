@@ -56,11 +56,12 @@ header.main{
 		color: inherit;
 
 		border: .1em solid @OUTPUT;
-		&[data-color='output'] &{border-color: @INPUT;}
 		padding: .2em;
 		transition: color .25s ease-out, border-color .25s ease-out;
 		&:hover{color: @BLACK; border-color: @BLACK;}
 	}
+
+	&[data-color='input'] a.title{border-color: @INPUT;}
 
 	.description{
 		font-weight: normal;
